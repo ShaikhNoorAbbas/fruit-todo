@@ -3,6 +3,9 @@ import { FruitService } from '../fruit.service';
 import { Router } from '@angular/router';
 import { Fruit } from '../fruit';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -14,7 +17,8 @@ export class CreateComponent implements OnInit {
   constructor(
     private fruitService: FruitService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.fruitService.getAll().subscribe({
       next: (data) => {
@@ -49,5 +53,7 @@ export class CreateComponent implements OnInit {
           console.log(error);
         },
       });
+
+    this.toastr.success('Fruit Created Successfully', 'Added');
   }
 }

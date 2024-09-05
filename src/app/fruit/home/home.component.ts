@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Fruit } from '../fruit';
 import { FruitService } from '../fruit.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,10 @@ import { FruitService } from '../fruit.service';
 })
 export class HomeComponent implements OnInit {
   allfruits: Fruit[] = [];
-  constructor(private fruitService: FruitService) {}
+  constructor(
+    private fruitService: FruitService,
+    private toastr: ToastrService
+  ) {}
   ngOnInit(): void {
     this.fruitService.getAll().subscribe((data) => {
       this.allfruits = data;
@@ -22,5 +26,7 @@ export class HomeComponent implements OnInit {
         this.allfruits = this.allfruits.filter((element) => element.id != id);
       },
     });
+
+    this.toastr.error('Fruit Deleted Successfully', 'Deleted');
   }
 }

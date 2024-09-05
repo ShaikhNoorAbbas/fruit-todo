@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FruitService } from '../fruit.service';
 import { Fruit } from '../fruit';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -17,7 +18,8 @@ export class EditComponent implements OnInit {
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private fruitService: FruitService
+    private fruitService: FruitService,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe((params) => {
@@ -42,5 +44,7 @@ export class EditComponent implements OnInit {
         console.log(error);
       },
     });
+
+    this.toastr.info('Fruit Updated Successfully', 'Updated');
   }
 }
