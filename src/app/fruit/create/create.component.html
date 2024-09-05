@@ -1,0 +1,60 @@
+<legend>Create Item</legend>
+<form [formGroup]="formData" (ngSubmit)="create()">
+  <div class="mb-3">
+    <label for="txtName" class="form-label">Name</label>
+    <input
+      type="text"
+      formControlName="name"
+      id="txtName"
+      class="form-control"
+      placeholder="Enter Fruit Name"
+    />
+    <small
+      *ngIf="
+        formData.get('name')?.hasError('required') &&
+        formData.get('name')?.touched
+      "
+      class="text-danger"
+      >Please Enter Fruit Name</small
+    >
+  </div>
+  <div class="mb-3">
+    <label for="txtPrice" class="form-label">Price</label>
+    <input
+      type="number"
+      formControlName="price"
+      id="txtPrice"
+      class="form-control"
+      placeholder="Enter Price"
+    />
+    <small
+      *ngIf="
+        formData.get('price')?.hasError('required') &&
+        formData.get('price')?.touched
+      "
+      class="text-danger"
+      >Please Enter Price</small
+    >
+  </div>
+  <div class="mb-3">
+    <label for="txtQuantity" class="form-label">Quantity</label>
+    <input
+      type="number"
+      formControlName="quantity"
+      id="txtQuantity"
+      class="form-control"
+      placeholder="Enter Quantity"
+    />
+    <small
+      *ngIf="
+        formData.get('quantity')?.hasError('required') &&
+        formData.get('quantity')?.touched
+      "
+      class="text-danger"
+      >Please Enter Quantity</small
+    >
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!formData.valid">
+    Create
+  </button>
+</form>

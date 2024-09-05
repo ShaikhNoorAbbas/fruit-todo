@@ -1,0 +1,32 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fruit of allfruits">
+        <th scope="row">{{ fruit?.id }}</th>
+        <td>{{ fruit?.name }}</td>
+        <td>{{ fruit?.quantity }}</td>
+        <td>{{ fruit?.price }}</td>
+        <td>
+          <a
+            href=""
+            class="btn btn-primary mx-3"
+            [routerLink]="['/fruit/edit', fruit?.id]"
+            >Edit</a
+          >
+          <button (click)="delete(fruit?.id)" class="btn btn-danger ms-2">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
